@@ -1,93 +1,82 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using SalamandrBag.animal;
-using SalamandrBag.animal.impl;
 
 namespace SalamandrBag.place.impl
 {
-    public class Room:IPlace
+    public class Room : IPlace
     {
-        private List<IPlace> Places;
-        private List<AnimalType> AnimalTypesWhichCanPathHere;
+        private List<IPlace> _places;
+        private List<AnimalType> _animalTypesWhichCanPathHere;
 
         public Room(List<IPlace> places, List<AnimalType> animalTypesWhichCanPathHere)
         {
-            Places = places;
-            AnimalTypesWhichCanPathHere = animalTypesWhichCanPathHere;
+            _places = places;
+            _animalTypesWhichCanPathHere = animalTypesWhichCanPathHere;
+        }
+
+        public void AddPlace(IPlace place)
+        {
+            _places.Add(place);
         }
 
         public bool AddAnimal(IAnimal animal)
         {
-            if (AnimalTypesWhichCanPathHere.Contains(animal.GetAnimalType()))
+            if (!_animalTypesWhichCanPathHere.Contains(animal.Type))
             {
-                foreach (var place in Places)
+                return false;
+            }
+
+            foreach (var place in _places)
+            {
+                if (place.AddAnimal(animal))
                 {
-                    if (place.AddAnimal(animal))
-                    {
-                        return true;
-                    }
+                    return true;
                 }
             }
+            
             return false;
         }
 
-        public String VoiceToConcreteAnimal(string animalName)
+        public string VoiceToConcreteAnimal(string animalName)
         {
-            String animalSays = null;
-            foreach (var place in Places)
+            string animalSays = null;
+
+            foreach (var place in _places)
             {
                 animalSays = place.VoiceToConcreteAnimal(animalName);
-                if (animalSays!=null)
+                if (animalSays != null)
                 {
                     break;
                 }
             }
+
             return animalSays;
         }
 
         public StringBuilder VoiceToAllAnimals()
         {
             StringBuilder animalSays = new StringBuilder();
-            foreach (var place in Places)
-            {
-                animalSays.Append(place.VoiceToAllAnimals());
-            }
+
+            _places.ForEach(place => animalSays.Append(place.VoiceToAllAnimals()));
+
             return animalSays;
         }
 
         public int GetTotalFoodWeightPerDay()
         {
-            int totalFoodWeight = 0;
-            foreach (var place in Places)
-            {
-                totalFoodWeight += place.GetTotalFoodWeightPerDay();
-            }
-            return totalFoodWeight;
+            return _places.Sum(place => place.GetTotalFoodWeightPerDay());
         }
 
         public float GetAverageFoodWeightPerAnimal()
         {
-            float totalFoodWeight = 0.0f;
-            foreach (var place in Places)
-            {
-                totalFoodWeight += place.GetAverageFoodWeightPerAnimal();
-            }
-            return totalFoodWeight/Places.Count;
-        }
-        public int CountAnimals()
-        {
-            int totalAnimalAmount = 0;
-            foreach (var place in Places)
-            {
-                totalAnimalAmount += place.CountAnimals();
-            }
-            return totalAnimalAmount;
+            return (float)_places.Average(place => place.GetAverageFoodWeightPerAnimal());
         }
 
-        public void AddPlace(IPlace place)
+        public int CountAnimals()
         {
-            Places.Add(place);
+            return _places.Sum(place => place.CountAnimals());
         }
     }
 }

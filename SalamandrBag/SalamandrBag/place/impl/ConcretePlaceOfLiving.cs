@@ -1,78 +1,60 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using SalamandrBag.animal;
-using SalamandrBag.animal.impl;
 
 namespace SalamandrBag.place.impl
 {
-    public class ConcretePlaceOfLiving:IPlace
+    public class ConcretePlaceOfLiving : IPlace
     {
-        private List<IAnimal> Animals = new List<IAnimal>();
-        private List<AnimalType> AnimalTypesWhichCanLiveHere;
+        private List<IAnimal> _animals;
+        private List<AnimalType> _animalTypesWhichCanLiveHere;
 
         public ConcretePlaceOfLiving(List<AnimalType> animalTypesWhichCanLiveHere)
         {
-            AnimalTypesWhichCanLiveHere = animalTypesWhichCanLiveHere;
+            _animals = new List<IAnimal>();
+            _animalTypesWhichCanLiveHere = animalTypesWhichCanLiveHere;
         }
 
         public bool AddAnimal(IAnimal animal)
         {
-            if (AnimalTypesWhichCanLiveHere.Contains(animal.GetAnimalType()))
+            if (_animalTypesWhichCanLiveHere.Contains(animal.Type))
             {
-                Animals.Add(animal);
+                _animals.Add(animal);
                 return true;
             }
             return false;
         }
 
         public string VoiceToConcreteAnimal(string animalName)
-        {
-            String animalSays = null;
-            foreach (var animal in Animals)
-            {
-                if (animal.GetName()==animalName)
-                {
-                    animalSays = animal.CommandVoice();
-                    break;
-                }
-            }
-            return animalSays;
+        {          
+            IAnimal concreteAnimal = _animals.Where(animal => animal.Name == animalName).FirstOrDefault();
+
+            return concreteAnimal.CommandVoice();
         }
 
         public StringBuilder VoiceToAllAnimals()
         {
             StringBuilder animalSays = new StringBuilder();
-            foreach (var animal in Animals)
-            {
-                animalSays.Append(animal.CommandVoice());
-            }
+
+            _animals.ForEach(animal => animalSays.Append(animal.CommandVoice()));
+
             return animalSays;
         }
 
         public int GetTotalFoodWeightPerDay()
         {
-            int totalFoodWeight = 0;
-            foreach (var animal in Animals)
-            {
-                totalFoodWeight += animal.GetWeightOfFoodPerDay();
-            }
-            return totalFoodWeight;
+            return _animals.Sum(animal => animal.WeightOfFoodPerDay);
         }
 
         public float GetAverageFoodWeightPerAnimal()
         {
-            int totalFoodWeight = 0;
-            foreach (var animal in Animals)
-            {
-                totalFoodWeight += animal.GetWeightOfFoodPerDay();
-            }
-            return totalFoodWeight/Animals.Count;
+            return (float)_animals.Average(animal => animal.WeightOfFoodPerDay);
         }
 
         public int CountAnimals()
         {
-            return Animals.Count;
+            return _animals.Count;
         }
     }
 }

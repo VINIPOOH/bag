@@ -2,7 +2,7 @@
 
 namespace SalamandrBag.animal.exeption
 {
-    public class NoSuchAnimalTypeException: Exception
+    public class NoSuchAnimalTypeException : Exception
     {
         
     }

@@ -1,35 +1,52 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
 
 namespace SalamandrBag.animal.impl
 {
-    public class StrangeRandomsAnimalSupplierStrategy:IAnimalSupplierStrategy
+    public class StrangeRandomsAnimalSupplierStrategy : IAnimalSupplierStrategy
     {
         private const int DEFAULTS_AMOUNT_FOOD_PER_DAY = 5;
-        private const String DEFAULTS_ANIMAL_NAME = "animal";
-        private IAnimalFactory AnimalFactory;
-        private int AnimalCounter;
+        private const string DEFAULTS_ANIMAL_NAME = "animal";
+
+        private IAnimalFactory _animalFactory;
+        private int _animalCounter;
         
         public IAnimal GetAnimal()
         {
+            return _animalFactory.CreateAnimal(
+                GenerateAnimalName(),
+                GenerateFoodPerDay(),
+                ChooseAnimalType());          
+        }
+
+        private string GenerateAnimalName()
+        {
+            return DEFAULTS_ANIMAL_NAME + _animalCounter++;
+        }
+
+        private int GenerateFoodPerDay()
+        {
+            return DEFAULTS_AMOUNT_FOOD_PER_DAY;
+        }
+
+        private AnimalType ChooseAnimalType()
+        {
             Random rnd = new Random();
-            int value = rnd.Next(0,5);
-            String generatedAnimalName = DEFAULTS_ANIMAL_NAME + AnimalCounter++;
-            switch (value)
+            int value = rnd.Next(0, 100);
+
+            if (0 <= value && value < 40)
             {
-                case 0:
-                case 1:
-                    return AnimalFactory.CreateAnimal(generatedAnimalName, DEFAULTS_AMOUNT_FOOD_PER_DAY,
-                        AnimalType.LICHURKA);
-                case 2:
-                case 3:
-                    return AnimalFactory.CreateAnimal(generatedAnimalName, DEFAULTS_AMOUNT_FOOD_PER_DAY,
-                        AnimalType.COMUFLOR);
-                case 4:
-                    return AnimalFactory.CreateAnimal(generatedAnimalName, DEFAULTS_AMOUNT_FOOD_PER_DAY,
-                        AnimalType.OKKAM);
+                return AnimalType.LICHURKA;
             }
-            throw new RuntimeWrappedException("this will newer happened");
+            else if (40 <= value && value < 79)
+            {
+                return AnimalType.COMUFLOR;
+            }
+            else if (80 <= value && value < 99)
+            {
+                return AnimalType.OKKAM;
+            }
+
+            return default;
         }
     }
 }
