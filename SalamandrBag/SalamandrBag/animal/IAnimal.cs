@@ -1,12 +1,13 @@
-﻿using System;
-
-namespace SalamandrBag.animal
+﻿namespace SalamandrBag.animal
 {
     public interface IAnimal
     {
-        AnimalType GetAnimalType();
-        int GetWeightOfFoodPerDay();
-        String GetName();
-        String CommandVoice();
+        AnimalType Type { get; }
+
+        int WeightOfFoodPerDay { get; }
+
+        string Name { get; }
+
+        string CommandVoice();
     }
 }

@@ -1,38 +1,26 @@
-﻿using System;
-
-namespace SalamandrBag.animal.impl
+﻿namespace SalamandrBag.animal.impl
 {
-    public class Animal:IAnimal
+    public class Animal : IAnimal
     {
-        private String name;
-        private int weightOfFoodPerDay;
-        private AnimalState animalState;
+        private AnimalState _animalState;
+
+        public int WeightOfFoodPerDay { get; }
+
+        public string Name { get; }
+
+        public AnimalType Type => _animalState.Type;
 
         public Animal(string name, int weightOfFoodPerDay, AnimalState animalState)
         {
-            this.name = name;
-            this.weightOfFoodPerDay = weightOfFoodPerDay;
-            this.animalState = animalState;
+            _animalState = animalState;
+
+            Name = name;
+            WeightOfFoodPerDay = weightOfFoodPerDay;            
         }
 
-        public AnimalType GetAnimalType()
+        public string CommandVoice()
         {
-            return animalState.GetType();
-        }
-
-        public int GetWeightOfFoodPerDay()
-        {
-            return weightOfFoodPerDay;
-        }
-
-        public String GetName()
-        {
-            return name;
-        }
-
-        public String CommandVoice()
-        {
-            return animalState.GetSpeech() + name;
+            return _animalState.Speech + Name;
         }
     }
 }

@@ -1,21 +1,17 @@
-﻿using System;
-using SalamandrBag.animal;
-using SalamandrBag.animal.impl;
+﻿using SalamandrBag.animal;
 
 namespace SalamandrBag
 {
     public interface IBagService
     {
+        void SetDay();
+        void SetNight();
         int CountAllAnimals();
         bool AddAnimal(IAnimal animal);
-        String CommandVoiceToConcreteAnimal(String animalName);
-        String CommandVoiceToAllAnimals();
+        string CommandVoiceToConcreteAnimal(string animalName);
+        string CommandVoiceToAllAnimals();
         int GetTotalFoodWeightPerDay();
         float GetAverageFoodWeightPerAnimal();
         bool AnimalTryJumpIntoBag();
-
-        void SetDay();
-
-        void SetNight();
     }
 }

@@ -1,26 +1,14 @@
-﻿using System;
-
-namespace SalamandrBag.animal
+﻿namespace SalamandrBag.animal
 {
     public class AnimalState
     {
-        private AnimalType type;
-        private String speech;
+        public AnimalType Type { get; }
+        public string Speech { get; }
 
-        public AnimalState(AnimalType type, string speech)
+        public AnimalState(AnimalType animalType, string speech)
         {
-            this.type = type;
-            this.speech = speech;
-        }
-
-        public AnimalType GetType()
-        {
-            return type;
-        }
-
-        public String GetSpeech()
-        {
-            return speech;
+            Type = animalType;
+            Speech = speech;
         }
     }
 }

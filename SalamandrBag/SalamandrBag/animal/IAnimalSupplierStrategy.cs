@@ -1,6 +1,4 @@
-﻿using SalamandrBag.animal.impl;
-
-namespace SalamandrBag.animal
+﻿namespace SalamandrBag.animal
 {
     public interface IAnimalSupplierStrategy
     {
