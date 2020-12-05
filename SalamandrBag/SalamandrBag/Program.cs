@@ -33,6 +33,7 @@ namespace SalamandrBag
             {
                 Console.WriteLine(e.GetType());
             }
+
             Console.WriteLine("GetTotalFoodWeightPerDay");
             Console.WriteLine(bagService.GetTotalFoodWeightPerDay());
             Console.WriteLine("CountAllAnimals");

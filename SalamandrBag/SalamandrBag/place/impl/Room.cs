@@ -6,7 +6,7 @@ using SalamandrBag.animal.impl;
 
 namespace SalamandrBag.place.impl
 {
-    public class Room:IPlace
+    public class Room : IPlace
     {
         private List<IPlace> Places;
         private List<AnimalType> AnimalTypesWhichCanPathHere;
@@ -29,6 +29,7 @@ namespace SalamandrBag.place.impl
                     }
                 }
             }
+
             return false;
         }
 
@@ -38,11 +39,12 @@ namespace SalamandrBag.place.impl
             foreach (var place in Places)
             {
                 animalSays = place.VoiceToConcreteAnimal(animalName);
-                if (animalSays!=null)
+                if (animalSays != null)
                 {
                     break;
                 }
             }
+
             return animalSays;
         }
 
@@ -53,6 +55,7 @@ namespace SalamandrBag.place.impl
             {
                 animalSays.Append(place.VoiceToAllAnimals());
             }
+
             return animalSays;
         }
 
@@ -63,6 +66,7 @@ namespace SalamandrBag.place.impl
             {
                 totalFoodWeight += place.GetTotalFoodWeightPerDay();
             }
+
             return totalFoodWeight;
         }
 
@@ -73,8 +77,10 @@ namespace SalamandrBag.place.impl
             {
                 totalFoodWeight += place.GetAverageFoodWeightPerAnimal();
             }
-            return totalFoodWeight/Places.Count;
+
+            return totalFoodWeight / Places.Count;
         }
+
         public int CountAnimals()
         {
             int totalAnimalAmount = 0;
@@ -82,6 +88,7 @@ namespace SalamandrBag.place.impl
             {
                 totalAnimalAmount += place.CountAnimals();
             }
+
             return totalAnimalAmount;
         }
 

@@ -4,9 +4,9 @@ namespace SalamandrBag.animal
 {
     public interface IAnimal
     {
+        String Name { get; }
+        int WeightOfFoodPerDay { get; }
         AnimalType GetAnimalType();
-        int GetWeightOfFoodPerDay();
-        String GetName();
         String CommandVoice();
     }
 }

@@ -2,8 +2,7 @@
 
 namespace SalamandrBag.exeption
 {
-    public class CallAllAnimalsAtNightException:Exception
+    public class CallAllAnimalsAtNightException : Exception
     {
-        
     }
 }

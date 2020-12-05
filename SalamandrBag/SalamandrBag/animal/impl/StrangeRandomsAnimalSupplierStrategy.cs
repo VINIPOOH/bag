@@ -3,17 +3,23 @@ using System.Runtime.CompilerServices;
 
 namespace SalamandrBag.animal.impl
 {
-    public class StrangeRandomsAnimalSupplierStrategy:IAnimalSupplierStrategy
+    public class StrangeRandomsAnimalSupplierStrategy : IAnimalSupplierStrategy
     {
         private const int DEFAULTS_AMOUNT_FOOD_PER_DAY = 5;
         private const String DEFAULTS_ANIMAL_NAME = "animal";
         private IAnimalFactory AnimalFactory;
         private int AnimalCounter;
-        
-        public IAnimal GetAnimal()
+
+        public StrangeRandomsAnimalSupplierStrategy(IAnimalFactory animalFactory)
+        {
+            AnimalFactory = animalFactory;
+        }
+
+        public IAnimal
+            GetAnimal()
         {
             Random rnd = new Random();
-            int value = rnd.Next(0,5);
+            int value = rnd.Next(0, 5);
             String generatedAnimalName = DEFAULTS_ANIMAL_NAME + AnimalCounter++;
             switch (value)
             {
@@ -29,6 +35,7 @@ namespace SalamandrBag.animal.impl
                     return AnimalFactory.CreateAnimal(generatedAnimalName, DEFAULTS_AMOUNT_FOOD_PER_DAY,
                         AnimalType.OKKAM);
             }
+
             throw new RuntimeWrappedException("this will newer happened");
         }
     }

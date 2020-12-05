@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalamandrBag", "SalamandrBag\SalamandrBag.csproj", "{1C765CDA-F527-4400-A82F-458E5468F90A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalamandrBagTest", "SalamandrBagTest\SalamandrBagTest.csproj", "{00C22C87-0CF9-479E-9F43-A3DF083A6EB1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{1C765CDA-F527-4400-A82F-458E5468F90A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C765CDA-F527-4400-A82F-458E5468F90A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C765CDA-F527-4400-A82F-458E5468F90A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00C22C87-0CF9-479E-9F43-A3DF083A6EB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00C22C87-0CF9-479E-9F43-A3DF083A6EB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00C22C87-0CF9-479E-9F43-A3DF083A6EB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00C22C87-0CF9-479E-9F43-A3DF083A6EB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

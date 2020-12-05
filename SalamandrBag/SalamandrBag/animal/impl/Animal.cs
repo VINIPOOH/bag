@@ -2,37 +2,28 @@
 
 namespace SalamandrBag.animal.impl
 {
-    public class Animal:IAnimal
+    public class Animal : IAnimal
     {
-        private String name;
-        private int weightOfFoodPerDay;
+        public String Name { get; }
+        public int WeightOfFoodPerDay { get; }
         private AnimalState animalState;
 
         public Animal(string name, int weightOfFoodPerDay, AnimalState animalState)
         {
-            this.name = name;
-            this.weightOfFoodPerDay = weightOfFoodPerDay;
+            this.Name = name;
+            this.WeightOfFoodPerDay = weightOfFoodPerDay;
             this.animalState = animalState;
         }
+
 
         public AnimalType GetAnimalType()
         {
             return animalState.GetType();
         }
 
-        public int GetWeightOfFoodPerDay()
-        {
-            return weightOfFoodPerDay;
-        }
-
-        public String GetName()
-        {
-            return name;
-        }
-
         public String CommandVoice()
         {
-            return animalState.GetSpeech() + name;
+            return animalState.GetSpeech() + Name;
         }
     }
 }

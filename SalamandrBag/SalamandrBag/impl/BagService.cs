@@ -5,10 +5,10 @@ using SalamandrBag.place;
 
 namespace SalamandrBag.impl
 {
-    public class BagService: IBagService
+    public class BagService : IBagService
     {
         private IPlace Place;
-        private bool isDay = true;
+        private bool _isDay = true;
         private IAnimalSupplierStrategy _animalSupplierStrategy;
 
         public BagService(IPlace place, IAnimalSupplierStrategy animalSupplierStrategy)
@@ -34,10 +34,11 @@ namespace SalamandrBag.impl
 
         public string CommandVoiceToAllAnimals()
         {
-            if (!isDay)
+            if (!_isDay)
             {
                 throw new CallAllAnimalsAtNightException();
             }
+
             return Place.VoiceToAllAnimals().ToString();
         }
 
@@ -53,17 +54,18 @@ namespace SalamandrBag.impl
 
         public bool AnimalTryJumpIntoBag()
         {
-            return Place.AddAnimal(_animalSupplierStrategy.GetAnimal());;
+            return Place.AddAnimal(_animalSupplierStrategy.GetAnimal());
+            ;
         }
 
         public void SetDay()
         {
-            isDay = true;
+            _isDay = true;
         }
 
         public void SetNight()
         {
-            isDay = false;
+            _isDay = false;
         }
     }
 }
