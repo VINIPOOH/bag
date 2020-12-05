@@ -12,6 +12,10 @@ namespace SalamandrBag.animal.impl
         private const String OKKAM_SPEECH = "I am okkam said ";
         private Dictionary<AnimalType, AnimalState> AnimalStates = new Dictionary<AnimalType, AnimalState>();
 
+        public AnimalFactory()
+        {
+        }
+
         public IAnimal CreateAnimal(String animalName, int foodWeightPerDay, AnimalType type)
         {
             if (AnimalStates.ContainsKey(type))

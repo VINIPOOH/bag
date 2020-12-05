@@ -1,0 +1,54 @@
+﻿@model BagWebConsoleModel
+@{
+    ViewData["Title"] = "Bag";
+}
+
+<div class="text-left row">
+    <div class="container col border m-1 p-1">
+        <form method="post" asp-action="AddAnimal">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="name" class="control-label"></label>
+                <input asp-for="name" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="animalFoodPerDay" class="control-label"></label>
+                <input asp-for="animalFoodPerDay" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="animalTypeNumber" class="control-label"></label>
+                <select asp-for="animalTypeNumber" class="form-control">
+                    <option value="0">LICHURKA</option>
+                    <option value="1">COMUFLOR</option>
+                    <option value="2">OKKAM</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add animal" class="btn btn-success"/>
+            </div>
+        </form>
+    </div>
+    <div class="container col">
+        <div class="border m-1 p-1">
+        <form method="post" asp-action="CommandVoiceToConcreteAnimal">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="name" class="control-label"></label>
+                <input asp-for="name" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Command voice to Animal" class="btn btn-success"/>
+            </div>
+
+        </form>
+    </div>
+        <div class="border m-1 p-1">
+            <h4 class="display-4">Console</h4>
+            <div class="border m-1 p-1">
+                <h5>@Model.Info</h5>
+                </div>
+            </div>
+    </div>
+    
+
+</div>

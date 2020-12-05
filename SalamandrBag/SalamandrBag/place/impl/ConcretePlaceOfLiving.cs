@@ -72,7 +72,7 @@ namespace SalamandrBag.place.impl
                 totalFoodWeight += animal.WeightOfFoodPerDay;
             }
 
-            return totalFoodWeight / _animals.Count;
+            return (float)totalFoodWeight / _animals.Count;
         }
 
         public int CountAnimals()

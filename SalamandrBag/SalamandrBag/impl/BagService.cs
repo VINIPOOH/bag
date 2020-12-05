@@ -55,7 +55,6 @@ namespace SalamandrBag.impl
         public bool AnimalTryJumpIntoBag()
         {
             return Place.AddAnimal(_animalSupplierStrategy.GetAnimal());
-            ;
         }
 
         public void SetDay()

@@ -6,7 +6,7 @@ namespace SalamandrBag.animal.impl
     public class StrangeRandomsAnimalSupplierStrategy : IAnimalSupplierStrategy
     {
         private const int DEFAULTS_AMOUNT_FOOD_PER_DAY = 5;
-        private const String DEFAULTS_ANIMAL_NAME = "animal";
+        private const String DEFAULTS_ANIMAL_NAME = "animal_";
         private IAnimalFactory AnimalFactory;
         private int AnimalCounter;
 

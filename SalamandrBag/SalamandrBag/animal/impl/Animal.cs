@@ -23,7 +23,7 @@ namespace SalamandrBag.animal.impl
 
         public String CommandVoice()
         {
-            return animalState.GetSpeech() + Name;
+            return animalState.GetSpeech() + Name+ ";  ";
         }
     }
 }

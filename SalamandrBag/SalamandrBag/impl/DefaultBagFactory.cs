@@ -11,8 +11,8 @@ namespace SalamandrBag.impl
         public IBagService GetBagService()
         {
             IAnimalSupplierStrategy supplierStrategy = new StrangeRandomsAnimalSupplierStrategy(new AnimalFactory());
-            List<AnimalType> animalTypesWhichCanPathHere = new List<AnimalType>();
-            animalTypesWhichCanPathHere.Add(AnimalType.OKKAM);
+            List<AnimalType> animalTypesWhichCanPathHere = new List<AnimalType>
+                {AnimalType.OKKAM, AnimalType.LICHURKA, AnimalType.COMUFLOR};
             IPlace concertRoom = new ConcretePlaceOfLiving(animalTypesWhichCanPathHere);
             Room root = new Room(new List<IPlace>(), animalTypesWhichCanPathHere);
             root.AddPlace(concertRoom);
